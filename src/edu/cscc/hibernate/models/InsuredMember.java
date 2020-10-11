@@ -17,8 +17,13 @@ public class InsuredMember {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "company_id")
-    private Integer companyId;
+    //Other properties
+
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    private Company company;
+
+    //Constructor and getter/setters
 
     public InsuredMember() {
     }
@@ -52,12 +57,12 @@ public class InsuredMember {
         this.lastName = lastName;
     }
 
-    public Integer getCompanyId() {
-        return companyId;
+    public Company getCompany() {
+        return company;
     }
 
-    public void setCompanyId(Integer companyId) {
-        this.companyId = companyId;
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
     @Override
@@ -67,13 +72,12 @@ public class InsuredMember {
         InsuredMember that = (InsuredMember) o;
         return Objects.equals(id, that.id) &&
                 Objects.equals(firstName, that.firstName) &&
-                Objects.equals(lastName, that.lastName) &&
-                Objects.equals(companyId, that.companyId);
+                Objects.equals(lastName, that.lastName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, companyId);
+        return Objects.hash(id, firstName, lastName);
     }
 
     @Override
@@ -82,7 +86,6 @@ public class InsuredMember {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", companyId=" + companyId +
                 '}';
     }
 }

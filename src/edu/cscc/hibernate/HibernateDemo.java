@@ -17,7 +17,6 @@ public class HibernateDemo {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         Company company = entityManager.find(Company.class, 1);
         System.out.println("Company name: " + company.getName());
-        company.getInsuredMembers().forEach(insuredMember -> System.out.println(insuredMember));
 
         entityManager.getTransaction().begin();
 
@@ -34,12 +33,13 @@ public class HibernateDemo {
         System.out.println(foundPolicy);
 
         InsuredMember insuredMember = new InsuredMember("Baker", "Mayfield");
-        insuredMember.setCompanyId(company.getId());
+        insuredMember.setCompany(company);
         entityManager.persist(insuredMember);
 
         String insuredMemberQuery = "select im from InsuredMember im order by im.id desc";
         InsuredMember foundMember = (InsuredMember) entityManager.createQuery(insuredMemberQuery).getResultList().get(0);
         System.out.println(foundMember);
+        System.out.println(foundMember.getCompany());
 
         entityManager.remove(foundPolicy);
         entityManager.remove(foundMember);
