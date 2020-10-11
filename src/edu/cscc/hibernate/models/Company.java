@@ -16,7 +16,8 @@ public class Company {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "company")
+    @OneToMany
+    @JoinColumn(name = "company_id")
     private List<InsuredMember> insuredMembers;
 
     public Company() {

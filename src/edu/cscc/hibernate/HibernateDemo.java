@@ -34,7 +34,7 @@ public class HibernateDemo {
         System.out.println(foundPolicy);
 
         InsuredMember insuredMember = new InsuredMember("Baker", "Mayfield");
-        insuredMember.setCompany(company);
+        insuredMember.setCompanyId(company.getId());
         entityManager.persist(insuredMember);
 
         String insuredMemberQuery = "select im from InsuredMember im order by im.id desc";

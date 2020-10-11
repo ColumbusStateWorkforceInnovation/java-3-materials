@@ -17,8 +17,8 @@ public class InsuredMember {
     @Column(name = "last_name")
     private String lastName;
 
-    @ManyToOne()
-    private Company company;
+    @Column(name = "company_id")
+    private Integer companyId;
 
     public InsuredMember() {
     }
@@ -52,12 +52,12 @@ public class InsuredMember {
         this.lastName = lastName;
     }
 
-    public Company getCompany() {
-        return company;
+    public Integer getCompanyId() {
+        return companyId;
     }
 
-    public void setCompany(Company company) {
-        this.company = company;
+    public void setCompanyId(Integer companyId) {
+        this.companyId = companyId;
     }
 
     @Override
@@ -68,12 +68,12 @@ public class InsuredMember {
         return Objects.equals(id, that.id) &&
                 Objects.equals(firstName, that.firstName) &&
                 Objects.equals(lastName, that.lastName) &&
-                Objects.equals(company, that.company);
+                Objects.equals(companyId, that.companyId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, company);
+        return Objects.hash(id, firstName, lastName, companyId);
     }
 
     @Override
@@ -82,7 +82,7 @@ public class InsuredMember {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", company=" + company +
+                ", companyId=" + companyId +
                 '}';
     }
 }
